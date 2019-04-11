@@ -23,3 +23,4 @@ testcase/judge/9003
 judgecore/conf/*.json
 !judgecore/conf/default.json.sample
 !judgecore/conf/lang_spec.json
+!judgecore/conf/default.json
