@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MOUNTFOLDER="/var/www/onlinejudge"
+MOUNTFOLDER="/var/www/data"
 MOUNTPOINT="/mnt/data"
 
 # if a warning about SIGNAL occurred on build, use this:

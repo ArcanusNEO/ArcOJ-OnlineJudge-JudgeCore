@@ -14,7 +14,7 @@
   "test_case_count": 1,
   "spj_mode": "no",
   "path": {
-    "base": "/mnt/data",
+    "base": "/var/www/data",
     "code": ["$base", "solutions", "$sid", "$filename"],
     "log": ["$temp"],
     "output": ["$base", "solutions", "$sid", "execout"],
