@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos:7
 LABEL maintainer="sunrisefox@qq.com"
 
 RUN yum -y install centos-release-scl
