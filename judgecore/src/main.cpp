@@ -160,6 +160,8 @@ string getStatusText(RESULT what) {
   chmod(path.at("code").c_str(), code_permission & (~S_IROTH));
   umount2(path["sandbox"].c_str(), MNT_FORCE);
   rmdir(path["sandbox"].c_str());
+  remove_folder(path["temp"]);
+  unlink((path["temp"] + ".cscript").c_str());
 
   // this may fail, so clean up first
   result["status"] = what;
