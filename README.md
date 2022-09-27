@@ -1,5 +1,7 @@
 ## Vampire Judge Core
 
+本项目 fork 自 [NKOJ-OnlineJudge-JudgeCore](https://github.com/NankaiACM/NKOJ-OnlineJudge-JudgeCore)，为新后端适配，原始项目为 [vampire-judge-core](https://github.com/SunriseFox/vampire-judge-core)。
+
 ### Prerequisite
 
 + Docker (如果是 Windows 下的 Docker，必须选择 Hyper-V + Linux Container)
