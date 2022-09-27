@@ -16,13 +16,13 @@
   "path": {
     "base": "/var/www/data",
     "code": ["$base", "solutions", "$sid", "$filename"],
-    "log": ["$temp"],
+    "log": ["$base", "solutions", "$sid"],
     "output": ["$base", "solutions", "$sid", "execout"],
-    "stdin": ["$base", "problem_data", "$pid"],
+    "stdin": ["$base", "problems-data", "$pid"],
     "stdout": ["$stdin"],
     "temp": ["/tmp", ["judge-", "$pid", "-", "$sid"]],
     "exec": ["$temp", "main"],
-    "spj": ["$base", "problem_spj", "$pid"]
+    "spj": ["$base", "problems-spj", "$pid", "main"]
   },
   "spj": {
     "code": ["$spj", ".", "$lang_ext"],
