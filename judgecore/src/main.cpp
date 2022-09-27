@@ -456,7 +456,7 @@ int compile_general(std::vector<const char*> args) {
     int fd = open(path.at("cmpinfo").c_str(), O_WRONLY);
     dup2(fd, STDOUT_FILENO);
     dup2(fd, STDERR_FILENO);
-    set_resource_limit(7000, 204800, 52428800);
+    set_resource_limit(7000, 1024000, 52428800);
     if (setpgid(0, 0)) {
       cerr << "set pgid failed!" << endl;
     };
