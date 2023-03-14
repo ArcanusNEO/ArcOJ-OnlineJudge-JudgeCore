@@ -1,46 +1,22 @@
-FROM centos:7
-LABEL maintainer="sunrisefox@qq.com"
+FROM almalinux:9
 
-RUN yum -y install centos-release-scl
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-RUN yum -y update
+RUN dnf update -y && \
+    dnf group install -y "Development Tools" && dnf install -y glibc-devel \
+    # gcc and static lib
+    dnf install -y python && \
+    # python
+    dnf install -y nodejs && \
+    # nodejs
+    dnf install -y golang
+    # go
 
-# gcc
-
-RUN yum -y install devtoolset-8
-
-# node - deprecated
-
-# RUN curl -sL https://rpm.nodesource.com/setup_11.x | bash -
-# RUN yum -y install nodejs
-
-# python
-
-RUN yum -y install rh-python36
-
-# go
-
-RUN yum -y install golang
-
-# static lib
-
-RUN yum -y install glibc-static
-
-# v8
-
-RUN curl -Lo /tmp/v8.tgz https://github.com/SunriseFox/vampire-judge-core/releases/download/latest/v8-latest-prebuild.tgz
-RUN mkdir /usr/bin/v8
-RUN tar -C /usr/bin/v8 -zxf /tmp/v8.tgz x64.release --strip-components 1
-
-# pypy3
-
-RUN curl -Lo /tmp/pypy.tgz https://github.com/SunriseFox/vampire-judge-core/releases/download/latest/pypy-latest-prebuild.tgz
-RUN tar -C /usr/bin -zxf /tmp/pypy.tgz
-RUN mv /usr/bin/pypy/bin/libpypy3-c.so /usr/bin/pypy/bin/libpypy3-c.so.debug /lib64
-
-# enable in path
-
-ENV PATH=/opt/rh/devtoolset-8/root/usr/bin:/opt/rh/rh-python36/root/usr/bin:$PATH
+RUN cd /tmp && \
+    mkdir -p /usr/local/libexec/pypy3 && \
+    curl -fsSLO https://downloads.python.org/pypy/pypy3.9-v7.3.11-linux64.tar.bz2 && \
+    tar -xavf pypy3.9-v7.3.11-linux64.tar.bz2 --strip-components=1 -C /usr/local/libexec/pypy3 && \
+    ln -srf /usr/local/libexec/pypy3/bin/pypy* /usr/local/bin && \
+    ln -srf /usr/local/libexec/pypy3/bin/libpypy*.so* /usr/local/lib64
+    # pypy3
 
 WORKDIR /usr/bin/judgecore
 ADD judgecore /usr/bin/judgecore
