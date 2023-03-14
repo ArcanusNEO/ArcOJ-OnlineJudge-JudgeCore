@@ -841,7 +841,7 @@ int trace_thread(int pid, THREAD_INFO* info) {
       return 0;
     }
 
-    if (status >> 8 == (SIGTRAP | (PTRAVE_EVENT_SECCOMP << 8)))
+    if (status >> 8 == (SIGTRAP | (PTRACE_EVENT_SECCOMP << 8)))
     {
       // syscall number
       orig_eax = ptrace(PTRACE_PEEKUSER, pid, sizeof(long) * ORIG_RAX, NULL);

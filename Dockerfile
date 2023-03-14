@@ -1,7 +1,7 @@
 FROM almalinux:9
 
 RUN dnf update -y && \
-    dnf group install -y "Development Tools" && dnf install -y glibc-devel \
+    dnf group install -y "Development Tools" && dnf install -y glibc-devel && \
     # gcc and static lib
     dnf install -y python && \
     # python
@@ -20,8 +20,8 @@ RUN cd /tmp && \
 
 WORKDIR /usr/bin/judgecore
 ADD judgecore /usr/bin/judgecore
-RUN set -ex; \
-    source /usr/bin/judgecore/compile.sh;
+RUN set -ex && \
+    source /usr/bin/judgecore/compile.sh
 
 # volume
 
